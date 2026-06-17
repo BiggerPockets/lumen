@@ -8,26 +8,26 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
 
-  <header class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+  <header class="bg-white border-b border-gray-200 px-4 sm:px-6 py-4 flex items-center justify-between">
     <span class="text-xl font-bold text-indigo-600 tracking-tight">Lumen</span>
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
       <a href="/setup" class="text-sm text-gray-600 hover:text-gray-900">Create org</a>
-      <a href="/login" class="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg transition-colors">Sign in</a>
+      <a href="/login" class="text-sm bg-indigo-600 hover:bg-indigo-700 text-white px-3 sm:px-4 py-1.5 rounded-lg transition-colors">Sign in</a>
     </div>
   </header>
 
-  <main class="max-w-3xl mx-auto px-6 py-20">
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
 
     <!-- Hero -->
-    <div class="text-center mb-16">
-      <h1 class="text-4xl font-bold text-gray-900 mb-4 tracking-tight">
-        Visibility into how your team<br>uses Claude Code
+    <div class="text-center mb-12 sm:mb-16">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+        See which Claude Code skills<br class="hidden sm:block"> your team actually uses
       </h1>
-      <p class="text-lg text-gray-500 mb-8 max-w-xl mx-auto">
-        Lumen collects events from Claude Code hooks and shows you which skills, tools, and workflows your engineers actually use — so you can invest in what works and cut what doesn't.
+      <p class="text-base sm:text-lg text-gray-500 mb-8 max-w-xl mx-auto">
+        Lumen tracks skill usage via Claude Code hooks and shows you what's getting used, what's trending, and what you can cut — without watching over anyone's shoulder.
       </p>
-      <div class="flex items-center justify-center gap-3">
-        <a href="/setup" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="/setup" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-6 py-2.5 rounded-lg transition-colors text-center">
           Create your org
         </a>
         <a href="/login" class="text-sm text-gray-600 hover:text-gray-900 font-medium px-4 py-2.5">
@@ -37,18 +37,18 @@
     </div>
 
     <!-- What you get -->
-    <div class="mb-16">
+    <div class="mb-12 sm:mb-16">
       <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-6">What you get</h2>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="bg-white rounded-xl border border-gray-200 p-5">
-          <div class="text-2xl mb-3">📊</div>
-          <h3 class="font-semibold text-gray-900 mb-1">Usage dashboard</h3>
-          <p class="text-sm text-gray-500">See event counts, active users, and top projects at a glance. Charts for trends over the last 30 days.</p>
+          <div class="text-2xl mb-3">📈</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Skill usage trends</h3>
+          <p class="text-sm text-gray-500">Per-skill trend lines over a configurable time window. See at a glance if usage is growing, flat, or dropping.</p>
         </div>
         <div class="bg-white rounded-xl border border-gray-200 p-5">
-          <div class="text-2xl mb-3">🔍</div>
-          <h3 class="font-semibold text-gray-900 mb-1">Event stream</h3>
-          <p class="text-sm text-gray-500">Every event logged with its type, user, project, and properties. See exactly what Claude Code is doing in real time.</p>
+          <div class="text-2xl mb-3">🏆</div>
+          <h3 class="font-semibold text-gray-900 mb-1">Skills leaderboard</h3>
+          <p class="text-sm text-gray-500">Ranked by total usage with a visual bar. Know immediately which skills are pulling weight and which aren't.</p>
         </div>
         <div class="bg-white rounded-xl border border-gray-200 p-5">
           <div class="text-2xl mb-3">🏢</div>
@@ -56,15 +56,15 @@
           <p class="text-sm text-gray-500">Each team gets their own org and API key. Data is fully isolated — your events stay yours.</p>
         </div>
         <div class="bg-white rounded-xl border border-gray-200 p-5">
-          <div class="text-2xl mb-3">🪝</div>
-          <h3 class="font-semibold text-gray-900 mb-1">Any hook, any event</h3>
-          <p class="text-sm text-gray-500">Not just skills — track tool uses, session starts, PR creation, or any custom event your hooks emit.</p>
+          <div class="text-2xl mb-3">🔒</div>
+          <h3 class="font-semibold text-gray-900 mb-1">No individual tracking</h3>
+          <p class="text-sm text-gray-500">Only skill names and project names are captured. No usernames, no emails — just aggregate stats.</p>
         </div>
       </div>
     </div>
 
     <!-- How to connect -->
-    <div class="mb-16">
+    <div class="mb-12 sm:mb-16">
       <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-6">How to connect</h2>
       <ol class="space-y-6">
         <li class="flex gap-4">
@@ -77,30 +77,33 @@
         <li class="flex gap-4">
           <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold flex items-center justify-center">2</span>
           <div>
-            <p class="font-medium text-gray-900 mb-1">Set your API key</p>
-            <p class="text-sm text-gray-500">Add <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">LUMEN_API_KEY=your_key</code> to your shell environment (e.g. <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">~/.zshrc</code>).</p>
-          </div>
-        </li>
-        <li class="flex gap-4">
-          <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold flex items-center justify-center">3</span>
-          <div>
-            <p class="font-medium text-gray-900 mb-1">Add the hook to Claude Code</p>
-            <p class="text-sm text-gray-500 mb-2">Add this to your <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.claude/settings.json</code>:</p>
-            <pre class="bg-gray-900 text-gray-100 text-xs rounded-lg p-4 overflow-x-auto leading-relaxed">{
+            <p class="font-medium text-gray-900 mb-1">Add the hook to your repo</p>
+            <p class="text-sm text-gray-500 mb-2">Add this to your project's <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.claude/settings.json</code> and commit it — all devs pick it up automatically:</p>
+            <pre class="bg-gray-900 text-gray-100 text-xs rounded-lg p-4 overflow-x-auto leading-relaxed whitespace-pre">{
   "hooks": {
     "PostToolUse": [{
       "matcher": "Skill",
-      "command": "skill=$(cat | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('skill','unknown'))\" 2>/dev/null || echo unknown); curl --max-time 2 -s -X POST {{ base_url }}/events -H 'Content-Type: application/json' -H 'Authorization: Bearer $LUMEN_API_KEY' -d \"{\\\"event\\\": \\\"skill_used\\\", \\\"properties\\\": {\\\"skill\\\": \\\"$skill\\\"}, \\\"user\\\": \\\"$(git config user.email 2>/dev/null)\\\", \\\"project\\\": \\\"$(basename $(git rev-parse --show-toplevel 2>/dev/null) 2>/dev/null)\\\"}\" > /dev/null 2>&1 &"
+      "hooks": [{
+        "type": "command",
+        "command": "skill=$(cat | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d.get('tool_input',{}).get('skill','unknown'))\" 2>/dev/null || echo unknown); curl --max-time 2 -s -X POST {{ base_url }}/events -H 'Content-Type: application/json' -H 'Authorization: Bearer $LUMEN_API_KEY' -d \"{\\\"event\\\": \\\"skill_used\\\", \\\"properties\\\": {\\\"skill\\\": \\\"$skill\\\"}, \\\"project\\\": \\\"$(basename $(git rev-parse --show-toplevel 2>/dev/null) 2>/dev/null)\\\"}\" > /dev/null 2>&1 &"
+      }]
     }]
   }
 }</pre>
           </div>
         </li>
         <li class="flex gap-4">
+          <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold flex items-center justify-center">3</span>
+          <div>
+            <p class="font-medium text-gray-900 mb-1">Set the API key in each dev's shell</p>
+            <p class="text-sm text-gray-500">Each developer adds <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">export LUMEN_API_KEY=your_key</code> to their <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">~/.zshrc</code> (or equivalent).</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
           <span class="flex-shrink-0 w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 text-sm font-bold flex items-center justify-center">4</span>
           <div>
             <p class="font-medium text-gray-900 mb-1">Open your dashboard</p>
-            <p class="text-sm text-gray-500">Visit <a href="/login" class="text-indigo-500 hover:underline">/login</a>, paste your API key, and events will start appearing as you use Claude Code.</p>
+            <p class="text-sm text-gray-500">Visit <a href="/login" class="text-indigo-500 hover:underline">/login</a>, paste your API key, and events will start appearing as your team uses Claude Code.</p>
           </div>
         </li>
       </ol>
@@ -108,7 +111,7 @@
 
   </main>
 
-  <footer class="border-t border-gray-200 px-6 py-6 text-center text-xs text-gray-400">
+  <footer class="border-t border-gray-200 px-4 sm:px-6 py-6 text-center text-xs text-gray-400">
     Lumen — open source Claude Code analytics
   </footer>
 
