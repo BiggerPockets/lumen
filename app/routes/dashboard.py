@@ -1,26 +1,22 @@
 from datetime import datetime, timedelta, timezone
-from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from fastapi.responses import HTMLResponse
+from fastapi import APIRouter, Depends, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from sqlalchemy import func, desc
 from ..database import get_db
 from ..models import Event, Org
+from .auth import get_current_org, COOKIE_NAME
 
 router = APIRouter()
 templates = Jinja2Templates(directory="app/templates")
 
 
-def resolve_org_by_key(key: str, db: Session) -> Org:
-    org = db.query(Org).filter(Org.api_key == key).first()
-    if not org:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    return org
-
-
 @router.get("/dashboard", response_class=HTMLResponse)
-def dashboard(request: Request, key: str = Query(...), db: Session = Depends(get_db)):
-    org = resolve_org_by_key(key, db)
+def dashboard(request: Request, db: Session = Depends(get_db)):
+    org = get_current_org(request, db)
+    if not org:
+        return RedirectResponse(url="/login", status_code=303)
     since = datetime.now(timezone.utc) - timedelta(days=30)
 
     total = db.query(func.count(Event.id)).filter(Event.org_id == org.id).scalar() or 0
@@ -80,9 +76,9 @@ def dashboard(request: Request, key: str = Query(...), db: Session = Depends(get
     )
 
     return templates.TemplateResponse(
+        request,
         "dashboard.html",
         {
-            "request": request,
             "org": org,
             "total": total,
             "unique_users": unique_users,
