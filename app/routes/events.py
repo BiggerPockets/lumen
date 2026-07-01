@@ -34,6 +34,21 @@ def clear_events(org: Org = Depends(resolve_org), db: Session = Depends(get_db))
     return {"ok": True}
 
 
+@router.get("/events/export")
+def export_events(org: Org = Depends(resolve_org), db: Session = Depends(get_db)):
+    events = db.query(Event).filter(Event.org_id == org.id).all()
+    return [
+        {
+            "event": e.event,
+            "properties": e.properties,
+            "user": e.user,
+            "project": e.project,
+            "timestamp": e.timestamp.isoformat() if e.timestamp else None,
+        }
+        for e in events
+    ]
+
+
 @router.post("/events", status_code=201)
 def ingest(payload: EventPayload, org: Org = Depends(resolve_org), db: Session = Depends(get_db)):
     event = Event(
