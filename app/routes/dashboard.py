@@ -130,6 +130,22 @@ def dashboard(request: Request, db: Session = Depends(get_db), days: int = Query
         .all()
     )
 
+    # Model usage (which Claude model handled each tool call)
+    model_expr = func.json_extract_path_text(Event.properties, 'model')
+    model_breakdown = (
+        db.query(model_expr.label("model"), func.count(Event.id).label("count"))
+        .filter(
+            Event.org_id == org.id,
+            Event.event == 'tool_used',
+            model_expr.isnot(None),
+            Event.timestamp >= since,
+        )
+        .group_by(model_expr)
+        .order_by(desc("count"))
+        .limit(10)
+        .all()
+    )
+
     # Build full date list
     date_range = []
     d = since.date()
@@ -191,6 +207,7 @@ def dashboard(request: Request, db: Session = Depends(get_db), days: int = Query
             "tool_breakdown": tool_breakdown,
             "top_bash_commands": top_bash_commands,
             "top_extensions": top_extensions,
+            "model_breakdown": model_breakdown,
             "recent": recent,
             "days": days,
         },

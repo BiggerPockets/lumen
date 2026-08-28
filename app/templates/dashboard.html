@@ -137,6 +137,27 @@
 
     </div>
 
+    <!-- Model usage -->
+    {% if model_breakdown %}
+    <div class="bg-white rounded-xl border border-gray-200 p-6">
+      <h2 class="text-sm font-semibold text-gray-700 mb-4">Model usage</h2>
+      {% set max_model = model_breakdown[0][1] %}
+      <ul class="space-y-3">
+        {% for model, count in model_breakdown %}
+        <li>
+          <div class="flex items-center justify-between text-sm mb-1">
+            <span class="text-gray-800 font-mono font-medium">{{ model }}</span>
+            <span class="text-gray-500 tabular-nums ml-4">{{ count }}</span>
+          </div>
+          <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-pink-400 rounded-full" style="width: {{ (count / max_model * 100) | round | int }}%"></div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
     <!-- Skills leaderboard + Top projects -->
     <div class="grid grid-cols-2 gap-6">
 
